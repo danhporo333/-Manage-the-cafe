@@ -1,0 +1,28 @@
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\QL_Quán_Cafe.exe.config
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\QL_Quán_Cafe.exe
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\QL_Quán_Cafe.pdb
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.csproj.AssemblyReference.cache
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.FLogin.resources
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.Properties.Resources.resources
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.csproj.GenerateResource.cache
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.csproj.CoreCompileInputs.cache
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.exe
+C:\Users\MSI\source\repos\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.pdb
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\QL_Quán_Cafe.exe.config
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\QL_Quán_Cafe.exe
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\QL_Quán_Cafe.pdb
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.csproj.AssemblyReference.cache
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.FLogin.resources
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.fTableManager.resources
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.Properties.Resources.resources
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.csproj.GenerateResource.cache
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.csproj.CoreCompileInputs.cache
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.exe
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.pdb
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.fAccountProfile.resources
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.fAdmin.resources
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\EntityFramework.dll
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\EntityFramework.SqlServer.dll
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\EntityFramework.xml
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\bin\Debug\EntityFramework.SqlServer.xml
+D:\source c#\Phần mềm quản lý quán cafe\QL_Quán_Cafe\QL_Quán_Cafe\obj\Debug\QL_Quán_Cafe.csproj.CopyComplete
