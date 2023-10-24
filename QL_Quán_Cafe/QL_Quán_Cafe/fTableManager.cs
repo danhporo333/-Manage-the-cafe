@@ -52,6 +52,7 @@ namespace QL_Quán_Cafe
                     button.Text = tableName.name + "\n" + tableName.status;
                     button.Size = new Size(80, 80); // Chiều rộng và chiều cao của nút
                     flowLayoutPanel1.Controls.Add(button);
+                    button.Click += button_Click;
                     switch (tableName.status)
                     {
                         case "Trống":
@@ -64,5 +65,49 @@ namespace QL_Quán_Cafe
                 }
             }
         }
+
+        private void button_Click(object sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+
+            if (clickedButton != null)
+            {
+                string buttonInfo = clickedButton.Text;
+                string tableName = buttonInfo.Split('\n')[0]; // Lấy tên bàn từ Text của button
+
+                using (Model1 context = new Model1())
+                {
+                    // Sử dụng LINQ để truy vấn dữ liệu từ các bảng BillInfo, Bill, và Food
+                    var query = from billInfo in context.BillInfo
+                                join bill in context.Bill on billInfo.idBill equals bill.id
+                                join food in context.Food on billInfo.idFood equals food.id
+                                where bill.idTable == 1
+                                select new
+                                {
+                                    FoodName = food.name,
+                                    Count = billInfo.count,
+                                    Price = food.price,
+                                    TotalPrice = food.price * billInfo.count
+                                };
+
+                    // Xóa tất cả các mục hiện tại trong ListView
+                    listView1.Items.Clear();
+
+                    // Hiển thị thông tin từ truy vấn trong ListView
+                    foreach (var result in query)
+                    {
+                        var item = new ListViewItem(result.FoodName);
+                        item.SubItems.Add(result.Count.ToString());
+                        item.SubItems.Add(result.Price.ToString());
+                        item.SubItems.Add(result.TotalPrice.ToString());
+
+                        listView1.Items.Add(item);
+                    }
+                }
+            }
+        }
     }
 }
+
+
+
