@@ -54,5 +54,10 @@ namespace QL_Quán_Cafe
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void FLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

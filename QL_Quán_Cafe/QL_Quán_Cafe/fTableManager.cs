@@ -81,7 +81,7 @@ namespace QL_Quán_Cafe
                     var query = from billInfo in context.BillInfo
                                 join bill in context.Bill on billInfo.idBill equals bill.id
                                 join food in context.Food on billInfo.idFood equals food.id
-                                where bill.idTable == 1
+                                where bill.idTable == context.TableFood.FirstOrDefault(tf => tf.name == tableName).id
                                 select new
                                 {
                                     FoodName = food.name,
