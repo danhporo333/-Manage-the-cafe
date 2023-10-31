@@ -46,6 +46,7 @@ create table Bill
 	DateCheckIn Date NOT NULL,
 	DateCheckOut Date,
 	idTable int not null,
+	discount int 
 	status int not null default 0 --1 đã thanh toán && 0 là chưa thanh toán
 
 	FOREIGN KEY (idTable) REFERENCES dbo.TableFood(id)
@@ -71,11 +72,13 @@ begin
 end
 select *from TableFood
 update TableFood set status = N'Trống'
-update TableFood set status = N'có người' where id = 6
+update TableFood set status = N'Trống' where id = 6
 
-select Food.name, BillInfo.count, Food.price, Food.price*BillInfo.count as totalPrice From BillInfo, Bill, Food where BillInfo.idBill = Bill.id and BillInfo.idFood = Food.id and Bill.idTable = 1
+select Food.name, BillInfo.count, Food.price, Food.price*BillInfo.count as totalPrice From BillInfo, Bill, Food where BillInfo.idBill = Bill.id and BillInfo.idFood = Food.id and bill.status = 0 and Bill.idTable = 4
 
 select *from Food
 select *from Bill
 select *from BillInfo
-select *from FoodCategory
+select *from TableFood
+update Bill set status = 1 where id = 1
+update Bill set discount = 0;
