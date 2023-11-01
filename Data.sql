@@ -82,3 +82,7 @@ select *from BillInfo
 select *from TableFood
 update Bill set status = 1 where id = 1
 update Bill set discount = 0;
+
+select TableFood.name, Bill.totalPrice, DateCheckIn, DateCheckOut, discount 
+from Bill, TableFood 
+where DateCheckIn >= '20231030' and DateCheckOut <= '20231031' and Bill.status = 1 and TableFood.id = Bill.idTable

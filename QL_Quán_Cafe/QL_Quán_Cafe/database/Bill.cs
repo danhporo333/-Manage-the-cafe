@@ -23,11 +23,13 @@ namespace QL_Quán_Cafe.database
         [Column(TypeName = "date")]
         public DateTime? DateCheckOut { get; set; }
 
-        public int idTable { get; set; }
+        public int? idTable { get; set; }
 
         public int status { get; set; }
 
         public int? discount { get; set; }
+
+        public int? totalPrice { get; set; }
 
         public virtual TableFood TableFood { get; set; }
 

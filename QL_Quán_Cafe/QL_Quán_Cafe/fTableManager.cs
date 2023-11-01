@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -300,6 +301,21 @@ namespace QL_Quán_Cafe
                     MessageBox.Show("Không tìm thấy hóa đơn của bàn này!");
                     return;
                 }
+                
+                // Cập nhật DateCheckOut cho bill
+                bill.DateCheckOut = DateTime.Now;
+
+                // Cập nhật tổng tiền cho bill từ giá trị trong Tong
+                decimal totalPrice;
+                if (decimal.TryParse(Tong.Text, NumberStyles.Currency, CultureInfo.CurrentCulture, out totalPrice))
+                {
+                    bill.totalPrice = (int?)totalPrice;
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi khi đọc tổng tiền từ giao diện!");
+                    return;
+                }
 
                 // Cập nhật trạng thái và tổng tiền cho bill
                 bill.status = 1;
@@ -405,8 +421,7 @@ namespace QL_Quán_Cafe
             decimal newTotal = currentTotal - discountAmount;
 
             // Hiển thị hộp thoại xác nhận
-            string tableName = ""; // Bạn cần lấy tên bàn hiện tại ở đây
-            DialogResult result = MessageBox.Show($"Bạn có chắc muốn thanh toán hóa đơn cho bàn {tableName} với tổng tiền: {newTotal.ToString("c")}?", "Xác nhận thanh toán", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show($"Bạn có chắc muốn giảm giá hóa đơn cho bàn này với tổng tiền:{currentTotal} thành {newTotal.ToString("c")}?", "Xác nhận thanh toán", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {

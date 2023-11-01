@@ -16,7 +16,7 @@ namespace QL_Quán_Cafe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fTableManager());
+            Application.Run(new fAdmin());
         }
     }
 }

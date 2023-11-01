@@ -41,9 +41,8 @@ namespace QL_Quán_Cafe.database
 
             modelBuilder.Entity<TableFood>()
                 .HasMany(e => e.Bill)
-                .WithRequired(e => e.TableFood)
-                .HasForeignKey(e => e.idTable)
-                .WillCascadeOnDelete(false);
+                .WithOptional(e => e.TableFood)
+                .HasForeignKey(e => e.idTable);
         }
     }
 }
