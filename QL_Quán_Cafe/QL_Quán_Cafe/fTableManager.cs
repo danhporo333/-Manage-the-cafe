@@ -1,4 +1,4 @@
-﻿using QL_Quán_Cafe.database;
+﻿﻿using QL_Quán_Cafe.database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,10 +18,24 @@ namespace QL_Quán_Cafe
     public partial class fTableManager : Form
     {
         private int selectedTableId = -1;
+        private string userType;
+        public fTableManager(string userType)
+        {
+            InitializeComponent();
+            this.userType = userType;
+
+            if (this.userType == "admin")
+            {
+                adminToolStripMenuItem.Visible = true;
+            }
+            else if (this.userType == "staff")
+            {
+                adminToolStripMenuItem.Visible = false;
+            }
+        }
+
         public fTableManager()
         {
-            InitializeComponent();   
-
         }
 
         private void đăngXuấtToolStripMenuItem_Click_1(object sender, EventArgs e)

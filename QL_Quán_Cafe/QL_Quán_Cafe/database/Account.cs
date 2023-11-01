@@ -20,6 +20,8 @@ namespace QL_Quán_Cafe.database
         [StringLength(1000)]
         public string PassWord { get; set; }
 
-        public int Type { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string Type { get; set; }
     }
 }

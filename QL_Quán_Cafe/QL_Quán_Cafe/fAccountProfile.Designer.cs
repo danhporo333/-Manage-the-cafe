@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtbUserName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txbDisplayname = new System.Windows.Forms.TextBox();
@@ -45,6 +44,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -54,22 +54,13 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.txtbUserName);
+            this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(9, 10);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(366, 53);
             this.panel2.TabIndex = 1;
-            // 
-            // txtbUserName
-            // 
-            this.txtbUserName.Location = new System.Drawing.Point(126, 11);
-            this.txtbUserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtbUserName.Name = "txtbUserName";
-            this.txtbUserName.ReadOnly = true;
-            this.txtbUserName.Size = new System.Drawing.Size(234, 20);
-            this.txtbUserName.TabIndex = 1;
             // 
             // label1
             // 
@@ -87,7 +78,7 @@
             this.panel1.Controls.Add(this.txbDisplayname);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(9, 67);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(366, 53);
             this.panel1.TabIndex = 2;
@@ -95,7 +86,7 @@
             // txbDisplayname
             // 
             this.txbDisplayname.Location = new System.Drawing.Point(124, 11);
-            this.txbDisplayname.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbDisplayname.Margin = new System.Windows.Forms.Padding(2);
             this.txbDisplayname.Name = "txbDisplayname";
             this.txbDisplayname.Size = new System.Drawing.Size(234, 20);
             this.txbDisplayname.TabIndex = 1;
@@ -116,7 +107,7 @@
             this.panel3.Controls.Add(this.txbPassword);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(9, 125);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(366, 53);
             this.panel3.TabIndex = 3;
@@ -124,7 +115,7 @@
             // txbPassword
             // 
             this.txbPassword.Location = new System.Drawing.Point(126, 11);
-            this.txbPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txbPassword.Name = "txbPassword";
             this.txbPassword.Size = new System.Drawing.Size(234, 20);
             this.txbPassword.TabIndex = 1;
@@ -145,7 +136,7 @@
             this.panel4.Controls.Add(this.txbNewPassWord);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Location = new System.Drawing.Point(9, 183);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(366, 53);
             this.panel4.TabIndex = 4;
@@ -153,7 +144,7 @@
             // txbNewPassWord
             // 
             this.txbNewPassWord.Location = new System.Drawing.Point(126, 11);
-            this.txbNewPassWord.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewPassWord.Margin = new System.Windows.Forms.Padding(2);
             this.txbNewPassWord.Name = "txbNewPassWord";
             this.txbNewPassWord.Size = new System.Drawing.Size(234, 20);
             this.txbNewPassWord.TabIndex = 1;
@@ -174,7 +165,7 @@
             this.panel5.Controls.Add(this.txbReEnterPass);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Location = new System.Drawing.Point(9, 240);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(366, 42);
             this.panel5.TabIndex = 2;
@@ -182,7 +173,7 @@
             // txbReEnterPass
             // 
             this.txbReEnterPass.Location = new System.Drawing.Point(126, 10);
-            this.txbReEnterPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbReEnterPass.Margin = new System.Windows.Forms.Padding(2);
             this.txbReEnterPass.Name = "txbReEnterPass";
             this.txbReEnterPass.Size = new System.Drawing.Size(234, 20);
             this.txbReEnterPass.TabIndex = 1;
@@ -201,24 +192,33 @@
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(191, 301);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(80, 31);
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Cập Nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Location = new System.Drawing.Point(276, 301);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(80, 31);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(126, 11);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(234, 20);
+            this.textBox1.TabIndex = 2;
             // 
             // fAccountProfile
             // 
@@ -234,10 +234,11 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "fAccountProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fAccountProfile";
+            this.Load += new System.EventHandler(this.fAccountProfile_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -255,7 +256,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtbUserName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txbDisplayname;
@@ -271,5 +271,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

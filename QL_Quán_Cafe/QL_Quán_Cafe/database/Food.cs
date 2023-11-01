@@ -15,6 +15,7 @@ namespace QL_Quán_Cafe.database
             BillInfo = new HashSet<BillInfo>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 
         [Required]

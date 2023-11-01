@@ -1,16 +1,9 @@
 ﻿using QL_Quán_Cafe.database;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.Entity;
-using static System.Net.Mime.MediaTypeNames;
-using System.Runtime.Remoting.Contexts;
 
 namespace QL_Quán_Cafe
 {
@@ -25,31 +18,57 @@ namespace QL_Quán_Cafe
 
         private void fAdmin_Load(object sender, EventArgs e)
         {
-            //dtgvAccount.Columns[1].Visible = false;//dùng để ẩn cột mà mình muốn
+
             Model1 context = new Model1();
             var account = context.Account.ToList();
             var foodcategory = context.FoodCategory.ToList();
             var food = context.Food.ToList();
             var tf = context.TableFood.ToList();
-            
-            dtgvAccount.DataSource = account;
+
+            //đổ dữ liệu vào bảng tài khoản
+            cbAccountType.DataSource = new List<string> { "admin", "staff" };
+            //dtgvAccount.Columns[2].Visible = false;//dùng để ẩn cột mà mình muốn
+
+            dtgvAccount.Rows.Clear();
+            foreach(var p in account)
+            {
+                int newRow = dtgvAccount.Rows.Add();
+                dtgvAccount.Rows[newRow].Cells[0].Value = p.UserName;
+                dtgvAccount.Rows[newRow].Cells[1].Value = p.Displayname;
+                dtgvAccount.Rows[newRow].Cells[2].Value = p.PassWord;
+                dtgvAccount.Rows[newRow].Cells[3].Value = p.Type;
+            }    
+
+            //đổ dữ liệu vào bảng danh mục
             dtgvCategory.DataSource = foodcategory;
             dtgvCategory.Columns[2].Visible = false;
-            
+
             //đổ dữ liệu từ bảng FoodCategory vào combobox
             cbFoodCategory.DataSource = foodcategory;
             cbFoodCategory.DisplayMember = "name";
             cbFoodCategory.ValueMember = "id";
-            
+
             //đổ dữ liệu và datagirdview
             dtgvFood.Rows.Clear();
-            foreach(var p in food)
+            foreach (var p in food)
             {
                 int newRow = dtgvFood.Rows.Add();
                 dtgvFood.Rows[newRow].Cells[0].Value = p.id;
                 dtgvFood.Rows[newRow].Cells[1].Value = p.name;
                 dtgvFood.Rows[newRow].Cells[2].Value = p.FoodCategory.id + " : " + p.FoodCategory.name;
                 dtgvFood.Rows[newRow].Cells[3].Value = p.price;
+            }
+
+            //đổ dữ liệu vào bảng bàn ăns
+            cbTableStatus.DataSource = new List<string> { "Trống", "Có Người" };
+
+            dtgvTable.Rows.Clear();
+            foreach (var p in tf)
+            {
+                int newRow = dtgvTable.Rows.Add();
+                dtgvTable.Rows[newRow].Cells[0].Value = p.id;
+                dtgvTable.Rows[newRow].Cells[1].Value = p.name;
+                dtgvTable.Rows[newRow].Cells[2].Value = p.status;
             }
         }
 
@@ -62,10 +81,17 @@ namespace QL_Quán_Cafe
 
                 using (Model1 context = new Model1())
                 {
-                    // Query the Bill table based on the selected date range
-                    var bills = context.Bill.Where(b => b.DateCheckOut >= startDate && b.DateCheckOut <= endDate && b.status == 1).ToList();
+                    var bills = context.Bill.Where(b => b.DateCheckOut >= startDate && b.DateCheckOut <= endDate && b.status == 1)
+                        .Select(bill => new
+                        {
+                            TableName = bill.TableFood.name,
+                            bill.totalPrice,
+                            bill.DateCheckIn,
+                            bill.DateCheckOut,
+                            bill.discount
+                        })
+                        .ToList();
 
-                    // Display the results in the DataGridView
                     dtgvBilll.DataSource = bills;
                 }
             }
@@ -90,7 +116,7 @@ namespace QL_Quán_Cafe
                 context.SaveChanges();
                 fAdmin_Load(sender, e);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -122,7 +148,7 @@ namespace QL_Quán_Cafe
             string ids = dtgvFood.Rows[e.RowIndex].Cells[0].Value.ToString();
             Model1 context = new Model1();
             Food find = context.Food.FirstOrDefault(p => p.id.ToString() == ids);
-            if(find != null)
+            if (find != null)
             {
                 txbFoodID.Text = ids;
                 txbFoodName.Text = find.name;
@@ -149,7 +175,7 @@ namespace QL_Quán_Cafe
                     fAdmin_Load(sender, e);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -195,7 +221,7 @@ namespace QL_Quán_Cafe
                 context.SaveChanges();
                 fAdmin_Load(sender, e);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -232,7 +258,7 @@ namespace QL_Quán_Cafe
                     var find = context.FoodCategory.FirstOrDefault(p => p.id.ToString() == txbCategoryID.Text);
 
                     if (find != null)
-                    { 
+                    {
                         find.name = textBox1.Text;
 
                         context.SaveChanges();
@@ -242,7 +268,7 @@ namespace QL_Quán_Cafe
                 }
             }
             catch (Exception ex)
-            { 
+            {
                 MessageBox.Show(ex.Message);
             }
         }
@@ -251,7 +277,7 @@ namespace QL_Quán_Cafe
         private void dtgvCategory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-            { 
+            {
                 string ids = dtgvCategory.Rows[e.RowIndex].Cells[0].Value.ToString();
 
                 using (Model1 context = new Model1())
@@ -268,7 +294,173 @@ namespace QL_Quán_Cafe
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi. Vui lòng thử lại.");
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //làm việc với phần bàn ăn trong form admin
+        private void btnAddTable_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Model1 context = new Model1();
+                TableFood tableFood = new TableFood();
+                tableFood.name = textBox2.Text;
+                tableFood.status = cbTableStatus.SelectedValue.ToString();
+                context.TableFood.Add(tableFood);
+                MessageBox.Show("thêm bàn thành công");
+                context.SaveChanges();
+                fAdmin_Load(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dtgvTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string ids = dtgvTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+                using (Model1 context = new Model1())
+                {
+                    // Đảm bảo rằng tên biến phản ánh đúng loại đối tượng
+                    var find = context.TableFood.FirstOrDefault(p => p.id.ToString() == ids);
+                    if (find != null)
+                    {
+                        textBox3.Text = ids;
+                        textBox2.Text = find.name;
+                        //cbTableStatus.SelectedValue = find.status;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnDeleteTable_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Model1 context = new Model1();
+                int temp = int.Parse(textBox3.Text);
+                TableFood find = context.TableFood.FirstOrDefault(p => p.id == temp);
+                if (find != null)
+                {
+                    context.TableFood.Remove(find);
+                    context.SaveChanges();
+                    MessageBox.Show("xóa thành công");
+                    fAdmin_Load(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnEditTable_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Model1 context = new Model1();
+                int temp = int.Parse((string)textBox3.Text);
+                TableFood find = context.TableFood.FirstOrDefault(p => p.id == temp);
+                if (find != null)
+                {
+                    find.name = textBox2.Text;
+                    find.status = cbTableStatus.SelectedValue.ToString();
+
+                    MessageBox.Show("cập nhật thành công");
+                    context.SaveChanges();
+                    fAdmin_Load(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dtgvAccount_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                Model1 context = new Model1();
+                Account account = context.Account.FirstOrDefault(p => p.UserName == txbUserName.Text);
+                if (account != null)
+                {
+                    account.UserName = txbUserName.Text;
+                    account.Displayname = txbDisplayName.ToString();
+                    account.PassWord = passWord.ToString();
+                    account.Type = cbAccountType.SelectedValue.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAddAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Model1 context = new Model1();
+                Account a = new Account();
+                a.UserName = txbUserName.Text;
+                a.Displayname = txbDisplayName.Text;
+                a.Type = cbAccountType.SelectedValue.ToString();
+
+                context.Account.Add(a);
+                MessageBox.Show("thêm thành công");
+                context.SaveChanges();
+                fAdmin_Load(sender, e);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Model1 context = new Model1();
+                Account account = context.Account.FirstOrDefault(p => p.UserName == txbUserName.Text);
+                if (account != null)
+                {
+                    context.Account.Remove(account);
+                    context.SaveChanges();
+                    MessageBox.Show("xóa thành công");
+                    fAdmin_Load(sender, e);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnEditAccount_Click(object sender, EventArgs e)
+        {
+            Model1 context = new Model1();
+            Account account = context.Account.FirstOrDefault(p => p.UserName == txbUserName.Text);
+            if(account != null)
+            {
+                account.UserName = txbUserName.Text;
+                account.Displayname = txbDisplayName.Text;
+                account.PassWord = passWord.Text;
+                account.Type = cbAccountType.SelectedValue.ToString();
+
+                MessageBox.Show("cập nhật thành công");
+                context.SaveChanges();
+                fAdmin_Load(sender, e);
             }
         }
     }
